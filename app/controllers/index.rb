@@ -33,9 +33,13 @@ get '/user/:id' do
 end
 
 post '/users' do
-  user = User.create(email: params[:user][:email], password: params[:user][:password], first_name: params[:user][:first_name], last_name: params[:user][:last_name], birthdate: params[:user][:birthdate])
-  session[:user_id] = user.id
-  redirect '/'
+  user = User.new(email: params[:user][:email], password: params[:user][:password], first_name: params[:user][:first_name], last_name: params[:user][:last_name], birthdate: params[:user][:birthdate])
+  if user.save
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    redirect '/'
+  end
 end
 
 #------------ EVENTS -------------
@@ -60,12 +64,12 @@ get '/delete/:id' do
 end
 
 post '/events' do
-  event = Event.create(user_id: params[:event][:user_id], name: params[:event][:name], location: params[:event][:location], starts_at: params[:event][:starts_at], ends_at: params[:event][:ends_at])
+  @event = Event.create(user_id: params[:event][:user_id], name: params[:event][:name], location: params[:event][:location], starts_at: params[:event][:starts_at], ends_at: params[:event][:ends_at])
+  @user = User.find(params[:event][:user_id])
   if request.xhr?
-    content_type :json
-    event.to_json
+    erb :_new_event, layout: false
   else
-    redirect "/event/#{event.id}"
+    redirect "/event/#{@event.id}"
   end
 end
 

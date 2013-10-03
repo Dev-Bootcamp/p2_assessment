@@ -16,7 +16,7 @@
           <td><a href='https://www.google.com/maps/preview#!q=<%= event.location %>'><%= event.location %></a></td>
           <td><%= event.starts_at %></td>
           <td><%= event.ends_at %></td>
-          <% if @user.id == session[:user_id] %><td><a href='edit/<%= event.id %>'>Edit this event</a></td><% end %>
+          <% if @user.id == session[:user_id] %><td><a href='/edit/<%= event.id %>'>Edit this event</a></td><% end %>
         </tr>
       <% end %>
     <% end %>
