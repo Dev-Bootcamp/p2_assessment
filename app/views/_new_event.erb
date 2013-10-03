@@ -1,0 +1,23 @@
+  <h1>Create New Event</h1>
+
+  <form id="new-event" method="post" action="/events">
+    <input type="hidden" name="event[user_id]" value="<%= session[:user_id] %>">
+
+    <label class="label">Event Name
+    <input type="text" name="event[name]" placeholder="enter your event's name" ></label>
+    <br>
+
+    <label class="label">Location
+    <input type="text" name="event[location]" placeholder="enter your event's location" ></label>
+    <br>
+
+    <label class="label">Starting Date & Time
+    <input type="datetime" name="event[starts_at]" placeholder="enter the date/time your event starts at" ></label>
+    <br>
+
+    <label class="label">Ending Date & Time
+    <input type="datetime" name="event[ends_at]" placeholder="enter the date/time your event ends at"></label>
+    <br>
+
+    <div class="submit"><input type="submit" value="Create Your Event"></div>
+  </form>
