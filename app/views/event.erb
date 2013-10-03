@@ -10,7 +10,7 @@
       <th>Created by</th>
     </tr>
       <tr>
-        <td><a href='https://www.google.com/maps/preview#!q=<%= @event.location %>'><%= @event.location %></a></td>
+        <td><a href='https://www.google.com/maps/preview#!q=<%= @event.location %>' target='_blank'><%= @event.location %></a></td>
         <td><%= @event.starts_at %></td>
         <td><%= @event.ends_at %></td>
         <td><a href='/user/<%= @event.user_id %>'><%= User.find(@event.user_id).first_name %> <%= User.find(@event.user_id).last_name %></a></td>
