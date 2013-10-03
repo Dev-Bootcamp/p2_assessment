@@ -1,23 +1,23 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1>Events, MoFo!</h1>
+  <p>These are your events.  There are many like them, but these ones are yours.</p>
 
   <table>
     <tr>
-      <th>File Description</th>
-      <th>File Location</th>
+      <th>Event Name</th>
+      <th>Location</th>
+      <th>Starts at</th>
+      <th>Ends at</th>
+      <th>Created by</th>
     </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
+    <% Event.all.each do |event| %>
+      <tr>
+        <td><a href='/event/<%= event.id %>'><%= event.name %></a></td>
+        <td><a href='https://www.google.com/maps/preview#!q=<%= event.location %>'><%= event.location %></a></td>
+        <td><%= event.starts_at %></td>
+        <td><%= event.ends_at %></td>
+        <td><a href='/user/<%= event.user_id %>'><%= User.find(event.user_id).first_name %> <%= User.find(event.user_id).last_name %></a></td>
+      </tr>
+    <% end %>
   </table>
 </div>

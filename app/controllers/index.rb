@@ -3,6 +3,16 @@ get '/' do
   erb :index
 end
 
+get '/user/:id' do
+  @user = User.find(params[:id])
+  erb :user
+end
+
+get '/event/:id' do
+  @event = Event.find(params[:id])
+  erb :event
+end
+
 #----------- SESSIONS -----------
 
 get '/sessions/new' do

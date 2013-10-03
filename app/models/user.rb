@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
    
   include BCrypt
 
-  has_many :created_events
-  has_many :events through: :created_events
+  has_many :created_events, class_name: "Event"
 
-  has_many :attended_events
+  has_many :event_attendances
+  has_many :attended_events, through: :event_attendances, source: :attendees
   
   validates :email, presence: true
   validates :email, uniqueness: true
